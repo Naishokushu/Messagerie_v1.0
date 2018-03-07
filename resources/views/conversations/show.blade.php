@@ -17,15 +17,15 @@
                             </div>
                         @endif
                         @foreach ($messages as $message)
-                        <div class="row">
-                            <div class="col-md-10 {{$message->from->id !== $user->id? 'offset-md-2 text-right' : ''}}">
-                                <p>
-                                    <strong>{{$message->from->id !== $user->id? 'Moi' : $message->from->name}}</strong><br>
-                                    {!! nl2br(e($message->content))!!}
-                                </p>
+                            <div class="row">
+                                <div class="col-md-10 {{$message->from->id !== $user->id? 'offset-md-2 text-right' : ''}}">
+                                    <p>
+                                        <strong>{{$message->from->id !== $user->id? 'Moi' : $message->from->name}}</strong><br>
+                                        {!! nl2br(e($message->content))!!}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
+                            <hr>
                         @endforeach
                         @if($messages->nextPageUrl())
                             <div class="text-center">

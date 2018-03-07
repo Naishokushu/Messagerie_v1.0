@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\ConversationRepository;
 use App\Http\Requests\StoreMessageRequest;
+use App\Notifications\MessageReceived;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,17 +12,16 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Support\Carbon;
 use App\Policies\UserPolicy;
 
-
 class ConversationsController extends Controller
 {
     /**
-    *@var ConversationRepository
-    */
+     *@var ConversationRepository
+     */
     private $r;
 
     /**
-    *@var AuthManager
-    */
+     *@var AuthManager
+     */
     private $auth;
 
     public function __construct(ConversationRepository $conversationRepository, AuthManager $auth)
@@ -65,7 +65,7 @@ class ConversationsController extends Controller
             $this->auth->user()->id,
             $user->id
         );
-        $user->notify(new MessageReceived($message));
+        //$user->notify(new MessageReceived($message));
         return redirect(route('conversations.show' ,['id'=>$user->id]));
     }
 }
